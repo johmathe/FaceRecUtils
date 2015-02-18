@@ -16,7 +16,7 @@ def GetConvertCropParamsFromStdin():
   for l in lines:
     params = [int(x) for x in l.split(' ')[:-1]]
     geometry = '%dx%d+%d+%d' % (params[2], params[3], params[0], params[1])
-    output_file = '%s-h%d.jpg' % (sys.argv[1], cnt)
+    output_file = '%s-h%d.jpg' % (sys.argv[2], cnt)
     convert_cmds.append('%s -crop %s %s' % (sys.argv[1], geometry, output_file))
     cnt += 1
   return convert_cmds
