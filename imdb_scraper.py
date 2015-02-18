@@ -6,10 +6,11 @@ import urllib
 import urllib2
 
 G_IMDB_SITE = 'http://www.imdb.com'
-G_IMDB_LIST = 'http://www.imdb.com/list/ls050274118/'
+G_IMDB_LIST = 'http://www.imdb.com/list/ls076754881/'
 # Number of threads to kick off
-G_N_JOBS = 24
-logging.basicConfig(level=logging.INFO)
+G_N_JOBS = 10
+G_OUTPUT_DIR = '/home/johmathe/dataset/imdb_artists'
+logging.basicConfig(level=logging.INFO, filename='imdb_scraper.log')
 
 
 def GetPicFromImdbPage(page_url):
@@ -34,7 +35,7 @@ def GetAllImages(starting_link, artist_name):
   starting_link = starting_link.split('?')[0]
   current_link = starting_link
   cnt = 0
-  dirname = artist_name.strip(' ,.').lower().replace(' ', '_')
+  dirname = '%s/%s' % (G_OUTPUT_DIR, artist_name.strip(' ,.').lower().replace(' ', '_'))
   os.mkdir(dirname)
   while starting_link not in next_link:
     imdb_page = '%s/%s' % (G_IMDB_SITE, current_link)
@@ -101,11 +102,13 @@ def DownloadArtistImages(artist_name, artist_id):
     artist_name: string, the name of the artist
     artist_id: string, the id of the artist (e.g nm0388382)
   """
-  logging.info('fetching images for %s ' % artist_name)
-  first_link = GetFirstPhotoLink(artist_id)
-  uri = StripSiteName(first_link)
-  GetAllImages(first_link, artist_name)
-
+  try:
+    logging.info('fetching images for %s ' % artist_name)
+    first_link = GetFirstPhotoLink(artist_id)
+    uri = StripSiteName(first_link)
+    GetAllImages(first_link, artist_name)
+  except:
+    logging.error('Issue with artist %s' % artist_name)
 
 if __name__ == '__main__':
   """Main entry point."""
