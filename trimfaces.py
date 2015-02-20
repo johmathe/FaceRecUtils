@@ -11,8 +11,8 @@ G_DETECT = '/home/johmathe/ccv/bin/scddetect'
 # Path to face model
 G_FACEMODEL = '/home/johmathe/ccv/samples/face.sqlite3'
 # Input and output directories
-G_PATH_DATASET = '/home/johmathe/dataset/imdb_artists/'
-G_DESTINATION = '/home/johmathe/dataset/trimmed'
+G_PATH_DATASET = '/home/johmathe/dataset/imdb_artists_women/'
+G_DESTINATION = '/home/johmathe/dataset/trimmed_women'
 # Number of tasks to run at the same time
 G_N_THREADS = 16
 

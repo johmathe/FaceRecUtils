@@ -6,11 +6,11 @@ import urllib
 import urllib2
 
 G_IMDB_SITE = 'http://www.imdb.com'
-G_IMDB_LIST = 'http://www.imdb.com/list/ls076754881/'
+G_IMDB_LIST = 'http://www.imdb.com/list/ls076759315/'
 # Number of threads to kick off
 G_N_JOBS = 10
-G_OUTPUT_DIR = '/home/johmathe/dataset/imdb_artists'
-logging.basicConfig(level=logging.INFO, filename='imdb_scraper.log')
+G_OUTPUT_DIR = '/home/johmathe/dataset/imdb_artists/women'
+logging.basicConfig(level=logging.INFO, filename='imdb_scraper_woman.log')
 
 
 def GetPicFromImdbPage(page_url):
