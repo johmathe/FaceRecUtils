@@ -11,12 +11,14 @@ def BuildClassesFromPath(path):
   classes = {}
   next_id = 0
   artists_to_id = {}
+
   for fname in flist:
     artist = fname.split('/')[-2]
     if artist not in artists_to_id:
       artists_to_id[artist] = next_id
       next_id += 1
     classes.setdefault(artists_to_id[artist], []).append(fname)
+  print artists_to_id
   return classes
 
 

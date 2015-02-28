@@ -1,2 +1,2 @@
 ./../caffe/build/tools/caffe train \
-    --solver=solver.prototxt
+    --solver=alex_solver.prototxt --gpu=0

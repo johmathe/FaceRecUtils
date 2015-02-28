@@ -11,8 +11,8 @@ G_DETECT = '/home/johmathe/ccv/bin/scddetect'
 # Path to face model
 G_FACEMODEL = '/home/johmathe/ccv/samples/face.sqlite3'
 # Input and output directories
-G_PATH_DATASET = '/home/johmathe/dataset/imdb_artists_women/'
-G_DESTINATION = '/home/johmathe/dataset/trimmed_women'
+G_PATH_DATASET = '/home/johmathe/dataset/test_data/'
+G_DESTINATION = '/home/johmathe/dataset/test_data/'
 # Number of tasks to run at the same time
 G_N_THREADS = 16
 
@@ -49,9 +49,12 @@ def CropImage(img_input, img_output, geometry):
 def TrimFacesFromPic(img_path, img_output_prefix):
   """Given an image, find out faces, crops and write to outputs"""
   geometries = DetectFaces(img_path)
+  results = []
   for i, g in enumerate(geometries):
-    CropImage(img_path, '%s_%d.jpg' % (img_output_prefix, i), g) 
-    
+    result_path = '%s_%d.jpg' % (img_output_prefix, i)
+    CropImage(img_path, result_path, g) 
+    results.append(result_path)
+  return results
 
 def FaceCropSetOfPics(pics_list):
   """Apply cropping to a set of pictures."""
